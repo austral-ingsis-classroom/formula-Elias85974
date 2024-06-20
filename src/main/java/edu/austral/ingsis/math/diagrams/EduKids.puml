@@ -1,0 +1,131 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+interface Function {
+    + execute() : double
+    + toString() : String
+    + getVariables() : List<String>
+    + getExpression() : String
+    + evaluate(double value) : void
+}
+
+class Constant implements Function {
+    - value: double
+    + Constant(double value)
+    + execute() : double
+    + toString() : String
+    + getVariables() : List<String>
+    + getExpression() : String
+    + evaluate() : double
+}
+
+class Variable implements Function {
+    - name: String
+    + Variable(String name)
+    + execute() : double
+    + toString() : String
+    + getVariables() : List<String>
+    + getExpression() : String
+    + evaluate() : double
+}
+
+class Sum implements Function {
+    - left: Function
+    - right: Function
+    + Sum(Function left, Function right)
+    + execute() : double
+    + toString() : String
+    + getVariables() : List<String>
+    + getExpression() : String
+    + evaluate(double value) : void
+}
+
+class Subtraction implements Function {
+    - left: Function
+    - right: Function
+    + Subtraction(Function left, Function right)
+    + execute() : double
+    + toString() : String
+    + getVariables() : List<String>
+    + getExpression() : String
+    + evaluate(double value) : void
+}
+
+class Product implements Function {
+    - functions: List<Function>
+    + Product(List<Function> functions)
+    + execute() : double
+    + toString() : String
+    + getVariables() : List<String>
+    + getExpression() : String
+    + evaluate(double value) : void
+}
+
+class Division implements Function {
+    - left: Function
+    - right: Function
+    + Division(Function left, Function right)
+    + execute() : double
+    + toString() : String
+    + getVariables() : List<String>
+    + getExpression() : String
+    + evaluate(double value) : void
+}
+
+class Power implements Function {
+    - base: Function
+    - exponent: Function
+    + Power(Function base, Function exponent)
+    + execute() : double
+    + toString() : String
+    + getVariables() : List<String>
+    + getExpression() : String
+    + evaluate(double value) : void
+}
+
+class SquareRoot implements Function {
+    - function: Function
+    + SquareRoot(Function function)
+    + execute() : double
+    + toString() : String
+    + getVariables() : List<String>
+    + getExpression() : String
+    + evaluate(int value) : void
+}
+
+class Module implements Function {
+    - function: Function
+    + Module(Function function)
+    + execute() : double
+    + toString() : String
+    + getVariables() : List<String>
+    + getExpression() : String
+    + evaluate(int value) : void
+}
+
+class Calculator {
+    - function: Function
+    + Calculator(Function function)
+    + execute() : double
+    + toString() : String
+    + getVariables() : List<String>
+    + getExpression() : String
+    + evaluate(double value) : void
+}
+
+Calculator *-- Function
+Sum o--> Function
+Subtraction o--> Function
+Product o--> Function
+Division o--> Function
+Power o--> Function
+SquareRoot o--> Function
+Module o--> Function
+
+class FunctionParser {
+    + parse(String expression) : Function
+}
+
+FunctionParser --> Function
+
+@enduml

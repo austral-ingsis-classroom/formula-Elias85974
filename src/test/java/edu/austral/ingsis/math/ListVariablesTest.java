@@ -1,11 +1,10 @@
 package edu.austral.ingsis.math;
 
+import static edu.austral.ingsis.math.parser.OperationParser.parse;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.empty;
 
-import java.util.Collections;
-import java.util.List;
 import org.junit.jupiter.api.Test;
 
 public class ListVariablesTest {
@@ -13,64 +12,63 @@ public class ListVariablesTest {
   /** Case 1 + 6 */
   @Test
   public void shouldListVariablesFunction1() {
-    final List<String> result = Collections.emptyList();
+    String expression = "1 + 6";
+    Function function = parse(expression);
 
-    assertThat(result, empty());
+    assertThat(function.getVariables(), empty());
   }
 
   /** Case 12 / div */
   @Test
   public void shouldListVariablesFunction2() {
-    final List<String> result = Collections.emptyList();
+    String expression = "12 / div";
+    Function function = parse(expression);
 
-    assertThat(result, containsInAnyOrder("div"));
+    assertThat(function.getVariables(), containsInAnyOrder("div"));
   }
 
   /** Case (9 / x) * y */
   @Test
   public void shouldListVariablesFunction3() {
-    final List<String> result = Collections.emptyList();
+    String expression = "(9 / x) * y";
+    Function function = parse(expression);
 
-    assertThat(result, containsInAnyOrder("x", "y"));
+    assertThat(function.getVariables(), containsInAnyOrder("x", "y"));
   }
 
   /** Case (27 / a) ^ b */
   @Test
   public void shouldListVariablesFunction4() {
-    final List<String> result = Collections.emptyList();
+    String expression = "(27 / a) ^ b";
+    Function function = parse(expression);
 
-    assertThat(result, containsInAnyOrder("a", "b"));
+    assertThat(function.getVariables(), containsInAnyOrder("a", "b"));
   }
 
   /** Case z ^ (1/2) */
   @Test
   public void shouldListVariablesFunction5() {
-    final List<String> result = Collections.emptyList();
+    String expression = "z ^ (1/2)";
+    Function function = parse(expression);
 
-    assertThat(result, containsInAnyOrder("z"));
+    assertThat(function.getVariables(), containsInAnyOrder("z"));
   }
 
   /** Case |value| - 8 */
   @Test
   public void shouldListVariablesFunction6() {
-    final List<String> result = Collections.emptyList();
+    String expression = "|value| - 8";
+    Function function = parse(expression);
 
-    assertThat(result, containsInAnyOrder("value"));
-  }
-
-  /** Case |value| - 8 */
-  @Test
-  public void shouldListVariablesFunction7() {
-    final List<String> result = Collections.emptyList();
-
-    assertThat(result, containsInAnyOrder("value"));
+    assertThat(function.getVariables(), containsInAnyOrder("value"));
   }
 
   /** Case (5 - i) * 8 */
   @Test
-  public void shouldListVariablesFunction8() {
-    final List<String> result = Collections.emptyList();
+  public void shouldListVariablesFunction7() {
+    String expression = "(5 - i) * 8";
+    Function function = parse(expression);
 
-    assertThat(result, containsInAnyOrder("i"));
+    assertThat(function.getVariables(), containsInAnyOrder("i"));
   }
 }
