@@ -32,6 +32,6 @@ public class Module implements Function {
 
   @Override
   public Function newFunction(List<Function> functions) {
-    return new Module(functions.getFirst());
+    return new Module(functions.get(0));
   }
 }
